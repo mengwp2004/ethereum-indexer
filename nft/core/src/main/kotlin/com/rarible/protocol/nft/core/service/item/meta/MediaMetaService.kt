@@ -13,10 +13,12 @@ import com.rarible.core.logging.LoggingUtils
 import com.rarible.protocol.nft.core.model.MediaMeta
 import com.rarible.protocol.nft.core.service.IpfsService
 import com.rarible.protocol.nft.core.service.item.meta.descriptors.ITEM_META_CAPTURE_SPAN_TYPE
+/*
 import com.sun.imageio.plugins.bmp.BMPMetadata
 import com.sun.imageio.plugins.gif.GIFImageMetadata
 import com.sun.imageio.plugins.jpeg.JPEGMetadata
 import com.sun.imageio.plugins.png.PNGMetadata
+ */
 import kotlinx.coroutines.reactive.awaitFirstOrNull
 import org.apache.commons.lang3.time.DateUtils
 import org.slf4j.Logger
@@ -94,6 +96,8 @@ class MediaMetaService(
                 url.endsWith(".svg") ->
                     MediaMeta("image/svg+xml", 192, 192).toMono()
                 else -> {
+                    MediaMeta("audio/mpeg").toMono()
+                    /*
                     getMetadata(url)
                         .flatMap { (width, height, metadata) ->
                             when (metadata) {
@@ -124,6 +128,7 @@ class MediaMetaService(
                             logger.warn(marker, "unable to get meta using HEAD request", ex)
                             Mono.empty()
                         }
+                    */
                 }
             }
         }
