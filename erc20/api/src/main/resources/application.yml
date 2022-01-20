@@ -1,0 +1,17 @@
+image:
+  repository: ethereum-indexer-erc20-api
+  replicas: 2
+  blockchain: ethereum
+
+application:
+  environment: e2e
+  CONSUL_ROOT_PATH: '{{ include "service.appEnv" $ }}/protocol/{{ .Values.blockchain }}/erc20'
+  SPRING_PROFILES_ACTIVE: '{{ .Values.blockchain }},consul,{{ include "service.appEnv" $ }},{{ .Values.blockchain }}-{{ include "service.appEnv" $ }}'
+nodeSelector:
+    node.labels.rarible.service: true
+resources:
+    jvm:
+      xmx_megabytes: 356
+      max_direct_memory_megabytes: 32
+updateConfig:
+    order: start-first
