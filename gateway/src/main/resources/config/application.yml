@@ -27,3 +27,5 @@ rarible:
     nginx-expose:
       enabled: true
       location: /v0.1
+gateway:
+  blockchain: ethereum
