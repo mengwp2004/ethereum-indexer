@@ -6,7 +6,8 @@ server:
   port: 8080
 
 spring:
-  application.name: protocol-${common.blockchain}-nft-indexer-api
+  #application.name: protocol-${common.blockchain}-nft-indexer-api
+  application.name: protocol-ethereum-nft-indexer-api
   jackson:
     mapper:
       ACCEPT_CASE_INSENSITIVE_ENUMS: true
@@ -50,9 +51,22 @@ api:
   royalty:
     cache-timeout: 600000 # 10 min
 
+  chain-id: 4
+  operator:
+    privateKey: 0x000000000000000000000000000
+
 common:
   metric-root-path: "protocol.nft.indexer"
   cryptoPunksContractAddress: "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB"
+  blockchain: ethereum
+  kafka-replica-set: localhost
+  openseaLazyMintAddress: "0x88b48f654c30e99bc2e4a1559b4dcf1ad93fa656"
+  factory:
+      erc721Rarible: "0x31575E4426d195f6082aDdcD44e97cB4CEa1291C"
+      erc721RaribleUser: "0xe5bF86F2FC1e0C704A8b2C095aD92C59100C63Ac"
+      erc1155Rarible: "0x3Df4035EC62B97b5e3B5f160Cb84dCe4A9CB545D"
+      erc1155RaribleUser: "0x5a5773ac6b87f15dF215A78BEfdce478C33D8418"
+  royaltyRegistryAddress: "0x0000000000000000000000000000000000000000"
 
 blockchain:
   scanner:

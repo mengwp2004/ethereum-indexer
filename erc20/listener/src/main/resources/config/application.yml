@@ -6,7 +6,8 @@ server:
   port: 8080
 
 spring:
-  application.name: protocol-${listener.blockchain}-erc20-listener
+  #application.name: protocol-${listener.blockchain}-erc20-listener
+  application.name: protocol-ethereum-erc20-listener
   jackson:
     mapper:
       ACCEPT_CASE_INSENSITIVE_ENUMS: true
@@ -35,11 +36,17 @@ rarible:
         packages: org.rarible.ethereum.erc20.api
   blockchain:
     monitoring:
-      blockchain: ${listener.blockchain}
+      #blockchain: ${listener.blockchain}
+      blockchain: ethereum
 
 common:
-  kafka-replica-set: ${kafka.hosts}
-  blockchain: ${listener.blockchain}
+  #kafka-replica-set: ${kafka.hosts}
+  kafka-replica-set: localhost
+  #blockchain: ${listener.blockchain}
+  blockchain: ethereum
 
 ethereumMaxFrameSize: 104857600
 ethereumBlockBatchSize: 50
+
+listener:
+  blockchain: ethereum
