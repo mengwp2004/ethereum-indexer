@@ -3,7 +3,7 @@ application:
 
 server:
   shutdown: graceful
-  port: 8080
+  port: 8089
 
 spring:
   #application.name: protocol-${api.blockchain}-erc20-indexer-api
@@ -41,3 +41,8 @@ springdoc:
     path: /v0.1/swagger/swagger-ui.html
   api-docs:
     path: /v0.1/swagger/v3/api-docs
+
+parityUrls: https://ropsten.infura.io/v3/8145642db2b94cf7bdba89a49e993418
+
+api:
+  blockchain: ethereum

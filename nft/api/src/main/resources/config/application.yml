@@ -3,7 +3,7 @@ application:
 
 server:
   shutdown: graceful
-  port: 8080
+  port: 8090
 
 spring:
   #application.name: protocol-${common.blockchain}-nft-indexer-api
@@ -72,6 +72,7 @@ blockchain:
   scanner:
     kafka:
       maxPollRecords: 0
+      brokerReplicaSet: 1
     ethereum:
       blockchain: ${common.blockchain}
       optimisticLockRetries: 3
@@ -92,3 +93,6 @@ blockchain:
 mongock:
   change-logs-scan-package:
     - com.rarible.blockchain.scanner.ethereum.migration
+parityUrls: https://ropsten.infura.io/v3/8145642db2b94cf7bdba89a49e993418
+
+redisUri: redis://10.31.4.41

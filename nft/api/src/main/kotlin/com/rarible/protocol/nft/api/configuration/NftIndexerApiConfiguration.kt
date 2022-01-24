@@ -9,10 +9,19 @@ import com.rarible.ethereum.nft.domain.EIP712DomainNftFactory
 import com.rarible.ethereum.nft.validation.LazyNftValidator
 import com.rarible.ethereum.sign.service.ERC1271SignService
 import com.rarible.protocol.nft.core.model.ReduceSkipTokens
+import io.daonomic.rpc.mono.WebClientTransport
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import scalether.core.EthPubSub
+import scalether.core.MonoEthereum
+import scalether.core.PubSubTransport
+import scalether.domain.Address
+import scalether.transaction.MonoTransactionPoller
 import scalether.transaction.MonoTransactionSender
+import scalether.transaction.ReadOnlyMonoTransactionSender
+import scalether.transport.WebSocketPubSubTransport
 import java.math.BigInteger
 
 @EnableMongock
@@ -47,4 +56,28 @@ class NftIndexerApiConfiguration(
             EIP712DomainNftFactory(BigInteger.valueOf(nftIndexerApiProperties.chainId))
         )
     }
+
+    @Bean
+    fun testEthereum(@Value("\${parityUrls}") url: String): MonoEthereum {
+        return MonoEthereum(WebClientTransport(url, MonoEthereum.mapper(), 10000, 10000))
+    }
+
+    @Bean
+    fun testSender(ethereum: MonoEthereum) = ReadOnlyMonoTransactionSender(ethereum, Address.ONE())
+
+    @Bean
+    fun poller(ethereum: MonoEthereum): MonoTransactionPoller {
+        return MonoTransactionPoller(ethereum)
+    }
+
+    @Bean
+    fun pubSubTransport(@Value("\${parityUrls}") url: String): WebSocketPubSubTransport {
+        return WebSocketPubSubTransport(url, Int.MAX_VALUE)
+    }
+
+    @Bean
+    fun ethPubSub(transport: PubSubTransport): EthPubSub {
+        return EthPubSub(transport)
+    }
+
 }
