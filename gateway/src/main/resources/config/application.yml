@@ -29,3 +29,9 @@ rarible:
       location: /v0.1
 gateway:
   blockchain: ethereum
+
+logging:
+  logstash:
+    tcp-socket:
+      enabled: true
+      destinations: http://10.31.4.41:5044
