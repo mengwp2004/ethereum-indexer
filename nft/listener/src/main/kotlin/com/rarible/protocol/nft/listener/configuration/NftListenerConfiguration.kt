@@ -110,7 +110,7 @@ class NftListenerConfiguration(
     }
 
     @Bean
-    fun pubSubTransport(@Value("\${parityUrls}") url: String): WebSocketPubSubTransport {
+    fun pubSubTransport(@Value("\${parityWebSocketUrls}") url: String): WebSocketPubSubTransport {
         return WebSocketPubSubTransport(url, Int.MAX_VALUE)
     }
 

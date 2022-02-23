@@ -3,11 +3,16 @@ application:
 
 server:
   shutdown: graceful
-  port: 8090
+  port: 8080
 
 spring:
   #application.name: protocol-${common.blockchain}-nft-indexer-api
   application.name: protocol-ethereum-nft-indexer-api
+  data:
+    mongodb:
+      uri: mongodb://admin:123456@10.31.4.41:27017
+      database: soundsright-test
+
   jackson:
     mapper:
       ACCEPT_CASE_INSENSITIVE_ENUMS: true
@@ -17,13 +22,25 @@ spring:
   main:
     banner-mode: log
     web-application-type: reactive
+  cloud:
+    consul:
+      #host: 127.0.0.1
+      #port: 8500
+      discovery:
+        #register: true
+        #hostname: 127.0.0.1
+        serviceName: ethereum-nft-api
+        #healthCheckPath: /_status/ping
+        #healthCheckInterval: 15s
+        #tags: urlprefix-/${spring.application.name}
+        #instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
 
 rarible:
   core:
     apm:
       agent:
         enabled: true
-        server: http://elk_apm-server:8200
+        server: http://10.31.4.32:8200
         packages: com.rarible.protocol.nft.api
       web:
         filter:
@@ -35,6 +52,8 @@ rarible:
       enabled: true
     read-only-transaction-sender:
       enabled: true
+    httpUrl: localhost
+    websocketUrl: http://localhost
   cache:
     use-locks: true
 
@@ -51,7 +70,7 @@ api:
   royalty:
     cache-timeout: 600000 # 10 min
 
-  chain-id: 4
+  chain-id: 3
   operator:
     privateKey: 0x000000000000000000000000000
 
@@ -59,13 +78,17 @@ common:
   metric-root-path: "protocol.nft.indexer"
   cryptoPunksContractAddress: "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB"
   blockchain: ethereum
-  kafka-replica-set: localhost
+  kafka-replica-set: 10.31.4.41:9092
   openseaLazyMintAddress: "0x88b48f654c30e99bc2e4a1559b4dcf1ad93fa656"
   factory:
-      erc721Rarible: "0x31575E4426d195f6082aDdcD44e97cB4CEa1291C"
-      erc721RaribleUser: "0xe5bF86F2FC1e0C704A8b2C095aD92C59100C63Ac"
-      erc1155Rarible: "0x3Df4035EC62B97b5e3B5f160Cb84dCe4A9CB545D"
-      erc1155RaribleUser: "0x5a5773ac6b87f15dF215A78BEfdce478C33D8418"
+      #erc721Rarible: "0x31575E4426d195f6082aDdcD44e97cB4CEa1291C"
+      #erc721RaribleUser: "0xe5bF86F2FC1e0C704A8b2C095aD92C59100C63Ac"
+      #erc1155Rarible: "0x3Df4035EC62B97b5e3B5f160Cb84dCe4A9CB545D"
+      #erc1155RaribleUser: "0x5a5773ac6b87f15dF215A78BEfdce478C33D8418"
+      erc721Rarible: "0xB565062078a47e0Bb063684452cB7eD501c4174F"
+      erc721RaribleUser: "0x2C68316826EBE47cF5131dF5B0a477fb2df52F95"
+      erc1155Rarible: "0x337C87bA5aD30bd8cB3Fa70bf491C505d58383f0"
+      erc1155RaribleUser: "0x2C68316826EBE47cF5131dF5B0a477fb2df52F95"
   royaltyRegistryAddress: "0x0000000000000000000000000000000000000000"
 
 blockchain:
@@ -93,6 +116,10 @@ blockchain:
 mongock:
   change-logs-scan-package:
     - com.rarible.blockchain.scanner.ethereum.migration
-parityUrls: https://ropsten.infura.io/v3/8145642db2b94cf7bdba89a49e993418
+#parityUrls: http:127.0.0.1:7545 #https://ropsten.infura.io/v3/8145642db2b94cf7bdba89a49e993418
 
-redisUri: redis://10.31.4.41
+parityUrls: http://10.31.4.232:8545
+parityWebSocketUrls: ws://10.31.4.232:8546
+redisUri: redis://10.31.4.41 #redis://127.0.0.1
+
+
