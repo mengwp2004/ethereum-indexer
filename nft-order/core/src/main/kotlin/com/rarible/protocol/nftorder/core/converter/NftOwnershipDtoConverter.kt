@@ -10,7 +10,7 @@ object NftOwnershipDtoConverter {
         return Ownership(
             dto.contract,
             EthUInt256(dto.tokenId),
-            PartDtoConverter.convert(dto.creators),
+            PartDtoConverter.convert(dto.creators?: listOf()),
             dto.owner,
             EthUInt256(dto.value),
             EthUInt256(dto.lazyValue),

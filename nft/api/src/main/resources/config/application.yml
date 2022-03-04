@@ -6,8 +6,8 @@ server:
   port: 8080
 
 spring:
-  #application.name: protocol-${common.blockchain}-nft-indexer-api
-  application.name: protocol-ethereum-nft-indexer-api
+  application.name: protocol-${common.blockchain}-nft-indexer-api
+  #application.name: protocol-ethereum-nft-indexer-api
   data:
     mongodb:
       uri: mongodb://admin:123456@10.31.4.41:27017
@@ -24,17 +24,10 @@ spring:
     web-application-type: reactive
   cloud:
     consul:
-      #host: 127.0.0.1
-      #port: 8500
+      host: 10.31.4.32
       discovery:
-        #register: true
-        #hostname: 127.0.0.1
-        serviceName: ethereum-nft-api
-        #healthCheckPath: /_status/ping
-        #healthCheckInterval: 15s
-        #tags: urlprefix-/${spring.application.name}
-        #instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
-
+        prefer-ip-address: true
+        service-name: ${common.blockchain}-nft-api
 rarible:
   core:
     apm:

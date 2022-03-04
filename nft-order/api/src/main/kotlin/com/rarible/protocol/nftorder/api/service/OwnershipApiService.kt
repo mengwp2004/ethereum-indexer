@@ -32,7 +32,7 @@ class OwnershipApiService(
 
     suspend fun getAllOwnerships(continuation: String?, size: Int?): NftOrderOwnershipsPageDto {
         logger.debug("Get all Ownerships with params: continuation={}, size={}", continuation, size)
-        return ownershipsResponse(nftOwnershipControllerApi.getNftAllOwnerships(continuation, size))
+        return ownershipsResponse(nftOwnershipControllerApi.getNftAllOwnerships(continuation, size,false))
     }
 
     suspend fun getOwnershipsByItem(

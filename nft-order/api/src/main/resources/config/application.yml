@@ -16,12 +16,24 @@ spring:
   main:
     banner-mode: log
     web-application-type: reactive
+  data:
+    mongodb:
+      #uri: mongodb://${mongodb.hosts}
+      #database: ${mongodb.database}
+      uri: mongodb://admin:123456@10.31.4.41:27017
+      database: soundsright-test
+
+  cloud:
+    consul:
+      discovery:
+        prefer-ip-address: true
+        service-name: ${common.blockchain}-nft-order-api    
 
 common:
   event-producer:
     environment: ${application.environment}
     kafka-replica-set: ${kafka.hosts}
-
+  blockchain: ethereum
 rarible:
   ethereum:
     converter:

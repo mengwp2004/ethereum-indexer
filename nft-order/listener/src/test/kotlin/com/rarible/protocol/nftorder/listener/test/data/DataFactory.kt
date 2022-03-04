@@ -57,7 +57,7 @@ fun randomNftItemDto(itemId: ItemId, vararg creators: PartDto): NftItemDto {
         supply = randomBigInt(),
         lazySupply = randomBigInt(),
         royalties = emptyList(),
-        date = nowMillis(),
+        //date = nowMillis(),
         owners = emptyList(),
         pending = emptyList(),
         deleted = false,

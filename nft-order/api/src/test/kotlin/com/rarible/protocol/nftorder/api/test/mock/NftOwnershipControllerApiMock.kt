@@ -39,7 +39,7 @@ class NftOwnershipControllerApiMock(
         every {
             nftOwnershipControllerApi.getNftAllOwnerships(
                 continuation,
-                size
+                size,false
             )
         } returns Mono.just(NftOwnershipsDto(returnOwnerships.size.toLong(), null, returnOwnerships.asList()))
     }

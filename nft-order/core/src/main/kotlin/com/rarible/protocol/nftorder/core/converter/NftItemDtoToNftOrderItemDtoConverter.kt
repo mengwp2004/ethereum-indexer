@@ -17,7 +17,8 @@ object NftItemDtoToNftOrderItemDtoConverter {
             lazySupply = nftItem.lazySupply,
             royalties = nftItem.royalties,
             owners = nftItem.owners,
-            date = nftItem.date ?: nowMillis(),
+            //date = nftItem.date ?: nowMillis(),
+            date = nowMillis(),
             pending = (nftItem.pending ?: emptyList()),
             meta = nftItem.meta,
             // Default enrichment data

@@ -48,6 +48,7 @@ class ProtocolRouteLocator(
                 )
             }
             uri(nftIndexerApiUri)
+            //uri("lb://dev-protocol-ethereum-nft-indexer-api")
         }
     }
 
@@ -61,6 +62,7 @@ class ProtocolRouteLocator(
                 )
             }
             uri(nftOrderApiUri)
+            //uri("lb://dev-protocol-ethereum-nft-order-api")
         }
     }
 
@@ -74,6 +76,7 @@ class ProtocolRouteLocator(
                 )
             }
             uri(nftOrderApiUri)
+            //uri("lb://dev-protocol-ethereum-order-indexer-api")
         }
     }
 
@@ -87,6 +90,7 @@ class ProtocolRouteLocator(
                 )
             }
             uri(orderIndexerApi)
+            //uri("lb://dev-protocol-ethereum-order-indexer-api")
         }
     }
 
@@ -100,6 +104,7 @@ class ProtocolRouteLocator(
                 )
             }
             uri(erc20IndexerApi)
+            //uri("lb://dev-protocol-ethereum-erc20-indexer-api")
         }
     }
 
@@ -113,6 +118,7 @@ class ProtocolRouteLocator(
                 )
             }
             uri(unlockableApi)
+            //uri("lb://dev-protocol-ethereum-unlockable-api")
         }
     }
 }

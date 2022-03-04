@@ -53,7 +53,7 @@
         <dependency>
             <groupId>com.rarible.core</groupId>
             <artifactId>rarible-core-telemetry-starter</artifactId>
-            <version>2.0.14</version>
+            <version>2.0.14-t4</version>
         </dependency>
         <dependency>
             <groupId>com.rarible.ethereum</groupId>

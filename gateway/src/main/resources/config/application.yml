@@ -3,8 +3,8 @@ server:
   port: 8088
 
 spring:
-  #application.name: protocol-${gateway.blockchain}-gateway
-  application.name: protocol-ethereum-gateway
+  application.name: protocol-${gateway.blockchain}-gateway
+  #application.name: protocol-ethereum-gateway
   jackson:
     mapper:
       ACCEPT_CASE_INSENSITIVE_ENUMS: true
@@ -22,6 +22,10 @@ spring:
         pool:
           max-life-time: 800s
           max-idle-time: 90s
+    consul:
+      discovery:
+        prefer-ip-address: true
+
 rarible:
   core:
     nginx-expose:

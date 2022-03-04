@@ -4,6 +4,7 @@ import com.rarible.core.common.nowMillis
 import com.rarible.ethereum.domain.EthUInt256
 import com.rarible.protocol.dto.NftItemDto
 import com.rarible.protocol.nftorder.core.model.Item
+import scalether.domain.Address
 import java.math.BigInteger
 
 object NftItemDtoConverter {
@@ -16,8 +17,9 @@ object NftItemDtoConverter {
             supply = EthUInt256(nftItem.supply),
             lazySupply = EthUInt256(nftItem.lazySupply),
             royalties = PartDtoConverter.convert(nftItem.royalties),
-            owners = nftItem.owners,
-            date = nftItem.date ?: nowMillis(),
+            owners = nftItem.owners ?:  listOf(),
+            //date = nftItem.date ?: nowMillis(),
+            date = nowMillis(),
             pending = ItemTransferDtoConverter.convert(nftItem.pending ?: emptyList()),
             // Default enrichment data, should be replaced out of this converter
             sellers = 0,
