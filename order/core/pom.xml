@@ -31,6 +31,7 @@
         <dependency>
             <groupId>com.rarible.protocol.currency</groupId>
             <artifactId>protocol-client-currency-starter</artifactId>
+            <version>1.23.5-t1</version>
         </dependency>
         <dependency>
             <groupId>com.rarible.protocol.ethereum</groupId>

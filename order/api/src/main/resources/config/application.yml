@@ -3,7 +3,7 @@ application:
 
 server:
   shutdown: graceful
-  port: 8080
+  port: 8081
 
 spring:
   #application.name: protocol-${common.blockchain}-order-indexer-api
@@ -22,7 +22,13 @@ spring:
       discovery:
         prefer-ip-address: true
         service-name: ${common.blockchain}-order-api
-
+        hostname: ${common.blockchain}-order-api
+  data:
+    mongodb:
+      #uri: mongodb://${mongodb.hosts}
+      #database: ${mongodb.database}
+      uri: mongodb://admin:123456@10.31.4.41:27017
+      database: soundsright-test
 
 rarible:
   ethereum:
@@ -93,5 +99,9 @@ springdoc:
 
 api:
   skipHeavyRequest: false
+
+parityUrls: http://10.31.4.232:8545
+parityWebSocketUrls: ws://10.31.4.232:8546
+#redisUri: redis://10.31.4.41
 
 

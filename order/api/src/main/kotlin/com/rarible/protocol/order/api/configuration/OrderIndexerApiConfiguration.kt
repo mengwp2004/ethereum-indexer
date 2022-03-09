@@ -9,9 +9,14 @@ import com.rarible.ethereum.nft.domain.EIP712DomainNftFactory
 import com.rarible.ethereum.nft.validation.LazyNftValidator
 import com.rarible.ethereum.sign.service.ERC1271SignService
 import com.rarible.protocol.order.core.configuration.OrderIndexerProperties
+import io.daonomic.rpc.mono.WebClientTransport
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import scalether.core.MonoEthereum
+import scalether.domain.Address
+import scalether.transaction.ReadOnlyMonoTransactionSender
 import java.math.BigInteger
 
 @Configuration
@@ -40,5 +45,13 @@ class OrderIndexerApiConfiguration(
             EIP712DomainNftFactory(BigInteger.valueOf(indexerProperties.chainId.toLong()))
         )
     }
+
+    @Bean
+    fun testEthereum(@Value("\${parityUrls}") url: String): MonoEthereum {
+        return MonoEthereum(WebClientTransport(url, MonoEthereum.mapper(), 10000, 10000))
+    }
+
+    @Bean
+    fun testSender(ethereum: MonoEthereum) = ReadOnlyMonoTransactionSender(ethereum, Address.ONE())
 
 }
