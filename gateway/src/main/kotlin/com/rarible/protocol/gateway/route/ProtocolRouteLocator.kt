@@ -48,7 +48,7 @@ class ProtocolRouteLocator(
                 )
             }
             uri(nftIndexerApiUri)
-            //uri("lb://dev-protocol-ethereum-nft-indexer-api")
+            //uri("http://dev-ethereum-nft-api.service.consul")
         }
     }
 
