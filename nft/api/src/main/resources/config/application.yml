@@ -3,7 +3,8 @@ application:
 
 server:
   shutdown: graceful
-  port: 8080
+  #port: 8080
+  port: 8060
 
 spring:
   application.name: protocol-${common.blockchain}-nft-indexer-api

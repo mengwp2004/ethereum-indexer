@@ -5,8 +5,8 @@ application:
 
 server:
   shutdown: graceful
-  port: 8080
-
+  #port: 8080
+  port: 8091
 spring:
   application.name: protocol-${common.blockchain}-nft-order-listener
   jackson:

@@ -3,8 +3,8 @@ application:
 
 server:
   shutdown: graceful
-  port: 8080
-
+  #port: 8080
+  port: 8071
 spring:
   #application.name: protocol-${listener.blockchain}-erc20-listener
   application.name: protocol-ethereum-erc20-listener
